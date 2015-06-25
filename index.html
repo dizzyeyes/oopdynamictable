@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="css/bootstrap.2.1.0.css" />
+<link rel="stylesheet" href="css/prettify.css" />
+<link rel="stylesheet" href="css/bootstrap-table.css">
+<link rel="stylesheet" href="css/bootstrap-editable.css">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<body>
+<script src="jquery-2.1.3.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/bootstrap-table.js"></script>
+<script src="lib/bootstrap-table-editable.js"></script>
+<script src="lib/bootstrap-editable.js"></script>
+<script src="lib/bootstrap-table-zh-CN.js"></script>
+<script src="js/dynamicTable/dynamicTableCore.js"></script>
+<script src="js/fadeInFadeOut.js"></script>
+<script src="js/dynamicTable.js"></script>
+<script src="js/dynamicTable/dynamicTableAction.js"></script>
+<script src="js/dynamicTable/dynamicTableProcess.js"></script>
+<script>
+
+    var table = new dynamicTable('','例子管理');
+    
+        
+     
+    table.TableShow();
+    
+    
+     
+</script>
+
+       <div style="display:none;" >                          
+                <label style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="form_name btn btn-danger " type="button"  id="title-manage" 
+                        onmousedown="isFormDrag=true;controls.enabled=false;" 
+                        onmouseup="isFormDrag=false;controls.enabled=true;"
+                        onmouseover="this.style.cursor='move';">模板名称</button>        
+                    <button  id="groupClose" class="btn btn-mini btn-normal" type="button" onclick="TableHide($table);" style="display: block;float: right;">
+                        <i class="icon-remove "></i>
+                    </button>
+                
+                </label>
+                <div class="well span10" >
+                    <div id="toolbar" >
+                        <div class="form-inline " role="form" style="float: left">
+                            <button class="btn btn-default btn-small" id="append-data" data-method="append" onclick="TableAppend($table);">
+                                添加条目
+                            </button>
+                            <button class="btn btn-default btn-small" id="remove-data" data-method="remove" onclick="TableRemoveSelected($table);">
+                                删除所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="show-data" data-method="show" onclick="TableHideItems($table,true);">
+                                显示
+                            </button>
+                            <button class="btn btn-default btn-small" id="hide-data" data-method="hide" onclick="TableHideItems($table,false);">
+                                隐藏
+                            </button>
+                            <button class="btn btn-default btn-small" id="highlight-data" data-method="hightlight" onclick="TableHighLightItems($table,true);">
+                                高亮所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="chlight-data" data-method="chlight" onclick="TableHighLightItems($table,false);">
+                                取消高亮
+                            </button>
+                        </div>
+                    </div>
+                    <table id="group-table" class="table table-striped"
+                           data-toolbar="#toolbar"
+                           data-pagination="true"
+                           data-show-export="true"
+                           data-search="true"
+                           data-search-align="right"
+                           data-show-columns="true"
+                           data-page-list="[5,10,20,50,100]"
+                           data-page-size="5"
+                           data-key-events="false"
+                            data-sort-name="id"
+                            data-click-to-select="true"
+                            data-height="295"
+                            >
+                        <thead>
+                            <tr id='tr_column' >
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th class="ItemID" data-field="id" data-halign="center" data-align="center" data-sortable="true" data-editable="true" data-width=350 onchange="TableGetByRow($table,row);alert(this.value)" data-switchable="false">ID</th>
+                                <th data-field="name" data-halign="center" data-align="center" data-sortable="true" data-editable="true" >组  名</th>
+                                <th data-field="children" data-halign="center" data-align="center" data-sortable="false" data-editable="true" >信息</th>
+                                <th data-field="operate1" data-halign="center" data-align="center" data-formatter="operateFormatter1" data-events="operateEvents1" data-width=70 >编辑</th>
+                                <th data-field="operate2" data-halign="center" data-align="center" data-formatter="operateFormatter2" data-events="operateEvents2" data-width=70 >隐藏</th>
+                                <th data-field="operate3" data-halign="center" data-align="center" data-formatter="operateFormatter3" data-events="operateEvents3" data-width=70 >高亮</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+</body>
